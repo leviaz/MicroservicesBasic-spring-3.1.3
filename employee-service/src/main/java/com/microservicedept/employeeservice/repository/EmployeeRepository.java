@@ -30,4 +30,15 @@ public class EmployeeRepository {
 
   }
 
+  public void DeleteById(Long id) {
+    employees.removeIf(employee -> employee.id().equals(id));
+  }
+
+  public Employee updateStatus(Long id, Employee employeeNew) {
+    DeleteById(id);
+    add(employeeNew);
+    return employeeNew;
+
+  }
+
 }

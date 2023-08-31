@@ -41,4 +41,13 @@ public class EmployeeRepository {
 
   }
 
+  public Employee transferEmployee(Long id, Long idNew) {
+    Employee employeeOld = findById(id);
+    Employee employeeUpdated = new Employee(id, idNew, employeeOld.name(), employeeOld.age(), employeeOld.position());
+    DeleteById(id);
+    add(employeeUpdated);
+    return employeeUpdated;
+
+  }
+
 }

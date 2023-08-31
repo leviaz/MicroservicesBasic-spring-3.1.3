@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -56,6 +57,12 @@ public class EmployeeController {
   public ResponseEntity<Employee> updateStatus(@PathVariable Long id, @RequestBody Employee employee) {
     repository.updateStatus(id, employee);
     return new ResponseEntity<Employee>(employee, HttpStatus.OK);
+  }
+
+  @PatchMapping("/transfer/{id}/{idNew}")
+  public ResponseEntity<Employee> transferEmployee(@PathVariable("id") Long id, @PathVariable("idNew") Long idNew) {
+    Employee employeeUpdated = repository.transferEmployee(id, idNew);
+    return new ResponseEntity<Employee>(employeeUpdated, HttpStatus.ACCEPTED);
   }
 
 }
